@@ -311,14 +311,15 @@ func _build_ui() -> void:
 	case_button = Button.new()
 	case_button.position = Vector2(520, 140)
 	case_button.size = Vector2(860, 820)
-	case_button.add_theme_stylebox_override("normal", _box_style(Color(0.55, 0.55, 0.55)))
-	case_button.add_theme_stylebox_override("hover", _box_style(Color(0.6, 0.6, 0.6)))
-	case_button.add_theme_stylebox_override("pressed", _box_style(Color(0.5, 0.5, 0.5)))
+	case_button.add_theme_stylebox_override("normal", _box_style(Color(0.42, 0.42, 0.42)))
+	case_button.add_theme_stylebox_override("hover", _box_style(Color(0.47, 0.47, 0.47)))
+	case_button.add_theme_stylebox_override("pressed", _box_style(Color(0.38, 0.38, 0.38)))
 	case_button.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
 	case_button.pressed.connect(click_pc)
 	add_child(case_button)
 
 	var hint := _label("CLICK THE CASE TO RUN JOBS", 26)
+	hint.add_theme_color_override("font_color", Color(1, 1, 1))
 	hint.position = Vector2(250, 20)
 	hint.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	case_button.add_child(hint)
@@ -427,7 +428,7 @@ func _update_ui() -> void:
 
 	for slot in SLOT_ORDER:
 		var t: int = tiers[slot]
-		var shade: float = [0.35, 0.7, 0.92][t]
+		var shade: float = [0.66, 0.82, 0.96][t]
 		slot_boxes[slot].add_theme_stylebox_override("panel", _box_style(Color(shade, shade, shade)))
 		if t == 0:
 			slot_labels[slot].text = "%s\n(stock / empty)" % slot
