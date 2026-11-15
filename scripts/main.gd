@@ -60,6 +60,7 @@ var power_bar: ProgressBar
 var power_label: Label
 var heat_bar: ProgressBar
 var heat_label: Label
+var heat_fill: StyleBoxFlat
 var status_label: Label
 var oc_button: Button
 var message_label: Label
@@ -235,6 +236,22 @@ func _label(text: String, size := 26) -> Label:
 func _build_ui() -> void:
 	var t := Theme.new()
 	t.default_font_size = 24
+	var ink := Color(0.1, 0.1, 0.1)
+	t.set_color("font_color", "Label", ink)
+	for state in ["font_color", "font_hover_color", "font_pressed_color", "font_focus_color"]:
+		t.set_color(state, "Button", ink)
+	t.set_color("font_disabled_color", "Button", Color(0.42, 0.42, 0.42))
+	t.set_stylebox("normal", "Button", _box_style(Color(0.97, 0.97, 0.97), Color(0.3, 0.3, 0.3)))
+	t.set_stylebox("hover", "Button", _box_style(Color(1.0, 1.0, 0.85), Color(0.3, 0.3, 0.3)))
+	t.set_stylebox("pressed", "Button", _box_style(Color(0.85, 0.85, 0.7), Color(0.3, 0.3, 0.3)))
+	t.set_stylebox("disabled", "Button", _box_style(Color(0.78, 0.78, 0.78), Color(0.6, 0.6, 0.6)))
+	t.set_stylebox("focus", "Button", StyleBoxEmpty.new())
+	var bar_bg := StyleBoxFlat.new()
+	bar_bg.bg_color = Color(0.7, 0.7, 0.7)
+	t.set_stylebox("background", "ProgressBar", bar_bg)
+	var bar_fill := StyleBoxFlat.new()
+	bar_fill.bg_color = Color(0.25, 0.45, 0.8)
+	t.set_stylebox("fill", "ProgressBar", bar_fill)
 	theme = t
 
 	var bg := ColorRect.new()
@@ -276,6 +293,8 @@ func _build_ui() -> void:
 	heat_bar.custom_minimum_size = Vector2(380, 36)
 	heat_bar.show_percentage = false
 	heat_bar.max_value = 120
+	heat_fill = StyleBoxFlat.new()
+	heat_bar.add_theme_stylebox_override("fill", heat_fill)
 	lv.add_child(heat_bar)
 	heat_label = _label("")
 	lv.add_child(heat_label)
@@ -385,12 +404,15 @@ func _update_ui() -> void:
 	heat_label.text = "%d / %d °C limit" % [int(round(heat)), int(cool_limit())]
 	if is_throttled():
 		status_label.text = "THROTTLING: earnings x0.5"
+		heat_fill.bg_color = Color(0.85, 0.15, 0.1)
 		status_label.modulate = Color(0.8, 0, 0)
 	elif heat > cool_limit() - 10.0:
 		status_label.text = "Getting hot..."
+		heat_fill.bg_color = Color(0.95, 0.55, 0.1)
 		status_label.modulate = Color(0.8, 0.4, 0)
 	else:
 		status_label.text = "Temperature OK"
+		heat_fill.bg_color = Color(0.3, 0.7, 0.3)
 		status_label.modulate = Color(0, 0.5, 0)
 
 	if overclock_left > 0.0:
