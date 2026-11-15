@@ -25,12 +25,12 @@ Full design: [docs/one-pager.docx](docs/one-pager.docx) — TLÜ game design cou
 
 Placeholder visuals only (grey boxes, plain buttons, text bars). Goal: test the core loop and the power/heat balance.
 
-- [ ] Click the PC box → money; show money, earnings per click and per second
-- [ ] Shop with 6 slots (CPU, GPU, RAM, storage, cooling, PSU), 2 tiers each
-- [ ] Idle income every second
-- [ ] Power limit: a part that would exceed PSU watts cannot be bought
-- [ ] Heat and throttling: above the cooling limit, earnings are halved
-- [ ] Overclock button: ×2 earnings for 10 s, adds heat
+- [x] Click the PC box → money; show money, earnings per click and per second
+- [x] Shop with 6 slots (CPU, GPU, RAM, storage, cooling, PSU), 2 tiers each
+- [x] Idle income every second
+- [x] Power limit: a part that would exceed PSU watts cannot be bought
+- [x] Heat and throttling: above the cooling limit, earnings are halved
+- [x] Overclock button: ×2 earnings for 10 s, adds heat
 
 Not in the lo-fi prototype: final art, tier 3 parts, sound, jobs, random events, New Build, save/load.
 
