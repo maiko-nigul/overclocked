@@ -11,9 +11,12 @@
 |---|---|---|
 | Incremental / clicker with light build management | Browser (desktop, mouse) | Godot 4.3 (GDScript), HTML5 export |
 
-Full design: [docs/one-pager.docx](docs/one-pager.docx) — TLÜ game design course, Monday cohort.
+Full design: **[Game Design Document](docs/game-design-document.md)** (rules, resources, core loop, progression) · [one-pager](docs/one-pager.docx) — TLÜ game design course, Monday cohort.
 
 ## Core loop
+
+![Core loop diagram](docs/core-loop.png)
+
 
 1. Click the PC → it runs a job and earns money.
 2. Buy and install parts → higher earnings per click and per second (idle income).
@@ -32,7 +35,19 @@ Placeholder visuals only (grey boxes, plain buttons, text bars). Goal: test the 
 - [x] Heat and throttling: above the cooling limit, earnings are halved
 - [x] Overclock button: ×2 earnings for 10 s, adds heat
 
-Not in the lo-fi prototype: final art, tier 3 parts, sound, jobs, random events, New Build, save/load.
+## Prototype v2 (Game Design Document assignment)
+
+Still placeholder visuals; the rest of the MVP gameplay is now in:
+
+- [x] Tier 3 parts (6 slots × 3 tiers = 18 parts), 1600 W PSU, Cryo cooler
+- [x] Overheat crash: heat ≥ limit + 15 °C → PC off for 6 s
+- [x] Overclock unlocks with the first cooler
+- [x] 4 jobs (office, streaming, 3D rendering, AI training): unlocked by parts, more pay but more heat
+- [x] Random events: rush order (×3), dust build-up (+12 °C until cleaned), power surge (crash above 85 % PSU load)
+- [x] Win screen with run time and best time → New Build with 3 stackable permanent bonuses
+- [x] Auto save and load in the browser + reset button
+
+Not yet: final art, visible part sprites, sound.
 
 ## MVP (final prototype)
 
@@ -63,7 +78,7 @@ scenes/              .tscn scenes (main.tscn is the entry scene)
 scripts/             GDScript files
 assets/art/          Piskel exports (PNG)
 assets/audio/        sfxr sound effects
-docs/                one-pager and mockup
+docs/                game design document, core loop diagram, one-pager, mockup
 ```
 
 ## Getting started
